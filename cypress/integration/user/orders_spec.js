@@ -1,3 +1,5 @@
+const array = ['Название', 'Заказ', 'Статус', 'Товар/услуга'];
+
 describe('/login', () => {
   beforeEach(() => {
     cy.login();
@@ -5,9 +7,8 @@ describe('/login', () => {
   });
 
   it('greets with your orders', () => {
-    cy.contains('tr', 'Название');
-    cy.contains('tr', 'Заказ');
-    cy.contains('tr', 'Статус');
-    cy.contains('tr', 'Товар/услуга');
+    array.forEach((item) => {
+      cy.contains('tr', `${item}`);
+    });
   });
 });

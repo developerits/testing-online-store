@@ -23,6 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { baseUrl } from '../fixtures/common.json';
+
+Cypress.Commands.add('visitBaseUrl', () => {
+  cy.visit(baseUrl);
+});
+
 Cypress.Commands.add('login', () => {
   cy.request({
     method: 'POST',
