@@ -41,6 +41,6 @@ describe('Registration', () => {
     cy.login();
     cy.get("input[type*='email']").type('UV200@yandex.ru');
     cy.get("input[type*='password']").type('Vasya41{enter}');
-    cy.get('form').contains('form', 'Вы уже авторизованы');
+    cy.get('form').contains('form', 'Вы уже авторизованы, перейти на главную');
   });
 });
