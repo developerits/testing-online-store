@@ -24,10 +24,53 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import { baseUrl } from '../fixtures/common.json';
+import 'cypress-localstorage-commands';
+import 'cypress-wait-until';
 
 Cypress.Commands.add('visitBaseUrl', () => {
   cy.visit(baseUrl);
 });
+
+Cypress.Commands.add('getPriceProductItem', () => {
+  let price;
+  cy.get('@buttonAddToCart')
+    .parent()
+    .find('strong')
+    .then((item) => parseInt(item.text()))
+    .then((x) => {
+      price = x;
+      console.log(price);
+      cy.wrap(price);
+    });
+});
+
+Cypress.Commands.add('addProductItemToCartWithCheck', () => {
+  // cy.intercept('GET', '**/**').as('getAll');
+  // cy.wait('@getAll');
+  cy.wait(1000);
+  cy.contains('Добавить').as('buttonAddToCart');
+  cy.get('@buttonAddToCart').click();
+  cy.contains('Количество товаров').then((node) => {
+    let textForAssertion = node.text();
+    cy.getPriceProductItem().then((priceAddedItem) => {
+      let currentPriceItem = textForAssertion.match(/\d+/)[0];
+      assert.equal(
+        currentPriceItem,
+        priceAddedItem,
+        'Цена добавленного товара = цене товара на кнопке корзины'
+      );
+      cy.wrap(priceAddedItem);
+    });
+  });
+});
+
+Cypress.Commands.add('addProductItemToCartWithoutCheck', () => {
+  cy.wait(1000);
+  cy.contains('Добавить').as('buttonAddToCart');
+  cy.get('@buttonAddToCart').click();
+});
+
+function getPriceProduct() {}
 
 Cypress.Commands.add('login', () => {
   cy.request({

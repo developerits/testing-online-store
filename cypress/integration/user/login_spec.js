@@ -45,7 +45,8 @@ describe('Login', () => {
 
   it('Navigate to main page on successful login', () => {
     cy.get("input[type*='email']").type('UV200@yandex.ru');
-    cy.get("input[type*='password']").type('Vasya41{enter}');
+    cy.get("input[type*='password']").type('Vasya41');
+    cy.contains('Войти').click();
     cy.hash().should('eq', '');
   });
 });

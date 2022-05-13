@@ -27,7 +27,7 @@ describe('Sorting items', () => {
       .should('eq', '?sort-by=1');
   });
 
-  it.only('Sorting by alphabet', () => {
+  it('Sorting by alphabet', () => {
     cy.visitBaseUrl();
     cy.contains('популярности')
       .click()

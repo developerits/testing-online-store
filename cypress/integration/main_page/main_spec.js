@@ -9,7 +9,7 @@ describe('Filters', () => {
     cy.hash().should('eq', '');
   });
 
-  it.only(`Check download "Оферта"`, () => {
+  it(`Check download "Оферта"`, () => {
     cy.contains('Оферта').click();
     const downloadsFolder = Cypress.config('downloadsFolder');
     cy.readFile(`${downloadsFolder}\\offer.docx`);

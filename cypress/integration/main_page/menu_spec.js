@@ -26,6 +26,8 @@ describe('Main Page', () => {
 
   it('Click exit button', () => {
     $Button('Выйти');
+    cy.intercept('POST', '**').as('getPost');
+    cy.wait('@getPost');
     cy.visit('https://marketolon.netlify.app/orders')
       .contains('Вход')
       .should('exist');

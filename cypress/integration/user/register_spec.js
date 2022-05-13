@@ -40,7 +40,8 @@ describe('Registration', () => {
   it('Register if you are already logged in', () => {
     cy.login();
     cy.get("input[type*='email']").type('UV200@yandex.ru');
-    cy.get("input[type*='password']").type('Vasya41{enter}');
+    cy.get("input[type*='password']").type('Vasya41');
+    cy.contains('Зарегистрироваться').click();
     cy.get('form').contains('form', 'Вы уже авторизованы, перейти на главную');
   });
 });
