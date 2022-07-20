@@ -2,7 +2,6 @@ const { log } = require('console');
 
 describe('Cart', () => {
   beforeEach(() => {
-    // cy.intercept('GET', '**/rest/v1/**').as('getRest');
     cy.intercept('GET', '**').as('getRest');
     cy.visitBaseUrl();
     cy.wait('@getRest');
@@ -125,7 +124,6 @@ describe('Cart', () => {
   });
 
   it('Clear cart', () => {
-    let amount;
     cy.restoreLocalStorage();
     cy.visit('https://marketolon.netlify.app/cart');
     cy.contains('Очистить').click();

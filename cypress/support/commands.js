@@ -45,8 +45,6 @@ Cypress.Commands.add('getPriceProductItem', () => {
 });
 
 Cypress.Commands.add('addProductItemToCartWithCheck', () => {
-  // cy.intercept('GET', '**/**').as('getAll');
-  // cy.wait('@getAll');
   cy.wait(1000);
   cy.contains('Добавить').as('buttonAddToCart');
   cy.get('@buttonAddToCart').click();
@@ -70,8 +68,6 @@ Cypress.Commands.add('addProductItemToCartWithoutCheck', () => {
   cy.get('@buttonAddToCart').click();
 });
 
-function getPriceProduct() {}
-
 Cypress.Commands.add('login', () => {
   cy.request({
     method: 'POST',
@@ -91,8 +87,5 @@ Cypress.Commands.add('login', () => {
       'supabase.auth.token',
       JSON.stringify({ currentSession: resp.body })
     );
-    //   cy.visit('https://marketolon.netlify.app/');
-    //   cy.wait(500);
-    // cy.visit('https://marketolon.netlify.app/');
   });
 });

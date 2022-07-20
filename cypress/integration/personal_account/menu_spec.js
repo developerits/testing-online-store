@@ -4,7 +4,7 @@ const $Button = (innerText) => {
   return cy.get('span').contains(innerText).parent().click({ force: true });
 };
 
-describe('Main Page', () => {
+describe('personal_account', () => {
   beforeEach(() => {
     cy.login();
     cy.visitBaseUrl();
@@ -13,7 +13,6 @@ describe('Main Page', () => {
   it('Profile button to 404 page', () => {
     $Button('Профиль');
     cy.wait(1000);
-    // cy.hash({ log: true });
     cy.contains('404');
   });
 
@@ -31,5 +30,10 @@ describe('Main Page', () => {
     cy.visit('https://marketolon.netlify.app/orders')
       .contains('Вход')
       .should('exist');
+  });
+
+  it('Order can be paid from my orders', () => {
+    cy.visit('https://marketolon.netlify.app/orders');
+    cy.contains('Оплатить').click();
   });
 });

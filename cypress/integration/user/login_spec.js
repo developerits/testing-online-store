@@ -47,6 +47,7 @@ describe('Login', () => {
     cy.get("input[type*='email']").type('UV200@yandex.ru');
     cy.get("input[type*='password']").type('Vasya41');
     cy.contains('Войти').click();
+    cy.wait(1000);
     cy.hash().should('eq', '');
   });
 });

@@ -1,4 +1,4 @@
-describe('Filters', () => {
+describe('Main', () => {
   beforeEach(() => {
     cy.visitBaseUrl();
   });
